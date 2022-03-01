@@ -29,7 +29,14 @@ function get_blocks( $content, $post_id = 0 ) {
 		}
 	}
 
-	return $output;
+	/**
+	 * Filter to allow plugins to change the parsed blocks.
+	 *
+	 * @param array $output   The parsed blocks.
+	 * @param string $content The content that is parsed.
+	 * @param int $post_id    The post id. Defaults to 0 if not parsing a post.
+	 */
+	return apply_filters( 'rest_api_blocks/get_blocks', $output, $content, $post_id );
 }
 
 /**
@@ -80,7 +87,14 @@ function handle_do_block( array $block, $post_id = 0 ) {
 		}
 	}
 
-	return $block;
+	/**
+	 * Filter to allow plugins to change the parsed block.
+	 *
+	 * @param array $block The parsed block.
+	 * @param int $post_id The post id. Defaults to 0 if not parsing a post.
+	 * @param WP_Block $block_object The block object.
+	 */
+	return apply_filters( 'rest_api_blocks/handle_do_block', $block, $post_id, $block_object );
 }
 
 /**
@@ -88,7 +102,7 @@ function handle_do_block( array $block, $post_id = 0 ) {
  *
  * @param array  $attribute Attributes.
  * @param string $html HTML string.
- * @param int    $post_id Post Number. Deafult 0.
+ * @param int    $post_id Post Number. Default 0.
  *
  * @return mixed
  */
@@ -144,5 +158,13 @@ function get_attribute( $attribute, $html, $post_id = 0 ) {
 		$value = rest_sanitize_value_from_schema( $value, $attribute );
 	}
 
-	return $value;
+	/**
+	 * Filter to allow plugins to change the parsed attribute.
+	 *
+	 * @param mixed  $value The value.
+	 * @param array  $attribute Attributes.
+	 * @param string $html HTML string.
+	 * @param int    $post_id Post Number. Default 0.
+	 */
+	return apply_filters( 'rest_api_blocks/get_attribute', $value, $attribute, $html, $post_id );
 }

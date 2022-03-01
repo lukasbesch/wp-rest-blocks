@@ -61,6 +61,11 @@ Installation requires you to check the project out in plugin directory and do a 
 
 ## Changelog ##
 
+### HEAD ###
+* Add filter: rest_api_blocks/get_blocks
+* Add filter: rest_api_blocks/handle_do_block
+* Add filter: rest_api_blocks/get_attribute
+
 ### 0.5.0 ###
 * Add support for new post types added in WordPress 5.9.
 
